@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shrinker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-black min-h-screen flex items-center justify-center">
+  <div class="container mx-auto p-8 w-full max-w-4xl">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-center mb-10">🔗 URL Shrinker</h1>
+
+    <!-- Form -->
+    <form action="/shortUrls" method="POST" class="flex flex-col sm:flex-row gap-4 mb-10">
+      <input 
+        required 
+        placeholder="Enter your full URL..." 
+        type="url" 
+        name="fullUrl" 
+        id="fullUrl" 
+        class="flex-1 px-4 py-3 rounded-xl border-2 border-black bg-white text-black
+               shadow-[4px_4px_0px_#000] focus:outline-none focus:ring-2 focus:ring-gray-300"
+      >
+      <button 
+        type="submit" 
+        class="ml-3 px-3 py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
+        Shrink
+      </button>
+    </form>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-separate border-spacing-y-4">
+        <thead>
+          <tr class="border-b-2 border-black">
+            <th class="px-4 py-3 text-left text-sm font-semibold text-black border-r-2 border-black">Full URL</th>
+            <th class="px-4 py-3 text-left text-sm font-semibold text-black border-r-2 border-black">Short URL</th>
+            <th class="px-4 py-3 text-left text-sm font-semibold text-black">Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(shortUrl => { %>
+            <tr>
+              <td colspan="3" class="p-0">
+                <div class="flex justify-between items-center px-4 py-3 rounded-xl bg-white border-2 border-black 
+                            shadow-[4px_4px_0px_#000] mb-4">
+                  <div class="truncate max-w-xs">
+                    <a href="<%= shortUrl.full %>" target="_blank" class="underline hover:text-gray-500">
+                      <%= shortUrl.full %>
+                    </a>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <a href="<%= shortUrl.short %>" target="_blank" 
+                       class="underline font-medium hover:text-gray-500">
+                      <%= shortUrl.short %>
+                    </a>
+                    <!-- Copy Button -->
+                    <button 
+                      type="button" 
+                      onclick="navigator.clipboard.writeText('https://vishaldev.me/<%= shortUrl.short %>')" 
+                      class="ml-3 px-3 py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
+                      Copy
+                    </button>
+                  </div>
+                  <div class="font-semibold"><%= shortUrl.clicks %></div>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+</html>
