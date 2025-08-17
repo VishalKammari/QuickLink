@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const ShortUrl = require('./models/shortUrl');
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "favicon.png")));
 
 mongoose.connect('mongodb+srv://vishal:vishal2102@cluster0.7dw8zod.mongodb.net/shortly?retryWrites=true&w=majority&appName=Cluster0')
@@ -14,7 +14,6 @@ mongoose.connect('mongodb+srv://vishal:vishal2102@cluster0.7dw8zod.mongodb.net/s
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended:false}));
 
 app.get('/', async(req, res) => {
