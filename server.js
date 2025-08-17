@@ -3,9 +3,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const ShortUrl = require('./models/shortUrl');
-mongoose.connect('mongodb+srv://vishal:vishal2102@cluster0.7dw8zod.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{
-    useNewUrlParser: true, useUnifiedTopology: true
-});
+mongoose.connect('mongodb+srv://vishal:vishal2102@cluster0.7dw8zod.mongodb.net/shortly?retryWrites=true&w=majority&appName=Cluster0')
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch(err => console.error("❌ MongoDB Connection Error:", err));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:false}));
 
