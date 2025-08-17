@@ -1,4 +1,4 @@
-# Shortly 🔗
+# Shortly 🔗   [shortly.vishaldev.me](shortly.vishaldev.me)
 
 **Shortly** is a simple, responsive URL shortener web application built with **Node.js**, **Express.js**, **MongoDB**, **EJS**, and **TailwindCSS**. It allows users to shorten long URLs, track clicks, and copy shortened URLs easily.
 
