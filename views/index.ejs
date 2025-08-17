@@ -6,15 +6,14 @@
   <title>shortly</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" href="/favicon.png">
-
 </head>
 <body class="bg-white text-black min-h-screen flex items-center justify-center">
-  <div class="container mx-auto p-8 w-full max-w-4xl">
+  <div class="container mx-auto px-4 sm:px-8 py-8 w-full max-w-4xl">
 
-    <h1 class="text-3xl font-bold text-center mb-10">🔗Shortly</h1>
+    <h1 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-10">🔗 Shortly</h1>
 
 
-    <form action="/shortUrls" method="POST" class="flex flex-col sm:flex-row gap-4 mb-10">
+    <form action="/shortUrls" method="POST" class="flex flex-col sm:flex-row gap-4 mb-8 sm:mb-10">
       <input 
         required 
         placeholder="Enter your full URL..." 
@@ -26,52 +25,43 @@
       >
       <button 
         type="submit" 
-        class="ml-3 px-3 py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
+        class="px-4 py-3 sm:py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] 
+               active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]
+               w-full sm:w-auto"
+      >
         Shrink
       </button>
     </form>
 
 
-    <div class="overflow-x-auto">
-      <table class="w-full border-separate border-spacing-y-4">
-        <thead>
-          <tr class="border-b-2 border-black">
-            <th class="px-4 py-3 text-left text-sm font-semibold text-black border-r-2 border-black">Full URL</th>
-            <th class="px-4 py-3 text-left text-sm font-semibold text-black border-r-2 border-black">Short URL</th>
-            <th class="px-4 py-3 text-left text-sm font-semibold text-black">Clicks</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% shortUrls.forEach(shortUrl => { %>
-            <tr>
-              <td colspan="3" class="p-0">
-                <div class="flex justify-between items-center px-4 py-3 rounded-xl bg-white border-2 border-black 
-                            shadow-[4px_4px_0px_#000] mb-4">
-                  <div class="truncate max-w-xs">
-                    <a href="<%= shortUrl.full %>" target="_blank" class="underline hover:text-gray-500">
-                      <%= shortUrl.full %>
-                    </a>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <a href="https://shortly.vishaldev.me/<%= shortUrl.short %>" target="_blank" 
-                       class="underline font-medium hover:text-gray-500">
-                      https://shortly.vishaldev.me/<%= shortUrl.short %>
-                    </a>
+    <div class="flex flex-col gap-4">
+      <% shortUrls.forEach(shortUrl => { %>
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl bg-white border-2 border-black shadow-[4px_4px_0px_#000] gap-2">
 
-                    <button 
-                      type="button" 
-                      onclick="navigator.clipboard.writeText('https://shortly.vishaldev.me/<%= shortUrl.short %>')" 
-                      class="ml-3 px-3 py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
-                      Copy
-                    </button>
-                  </div>
-                  <div class="font-semibold"><%= shortUrl.clicks %></div>
-                </div>
-              </td>
-            </tr>
-          <% }) %>
-        </tbody>
-      </table>
+          <div class="truncate w-full sm:w-1/3">
+            <a href="<%= shortUrl.full %>" target="_blank" class="underline hover:text-gray-500 break-words">
+              <%= shortUrl.full %>
+            </a>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-1/3">
+            <a href="https://shortly.vishaldev.me/<%= shortUrl.short %>" target="_blank" 
+               class="underline font-medium hover:text-gray-500 break-words">
+              shortly.vishaldev.me/<%= shortUrl.short %>
+            </a>
+            <button 
+              type="button" 
+              onclick="navigator.clipboard.writeText('https://shortly.vishaldev.me/<%= shortUrl.short %>')" 
+              class="px-3 py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] 
+                     active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]"
+            >
+              Copy
+            </button>
+          </div>
+
+          <div class="font-semibold mt-2 sm:mt-0 sm:ml-2">clicks: <%= shortUrl.clicks %></div>
+        </div>
+      <% }) %>
     </div>
 
   </div>
