@@ -9,10 +9,9 @@
 <body class="bg-white text-black min-h-screen flex items-center justify-center">
   <div class="container mx-auto p-8 w-full max-w-4xl">
 
-    <!-- Title -->
     <h1 class="text-3xl font-bold text-center mb-10">🔗 URL Shrinker</h1>
 
-    <!-- Form -->
+
     <form action="/shortUrls" method="POST" class="flex flex-col sm:flex-row gap-4 mb-10">
       <input 
         required 
@@ -30,7 +29,7 @@
       </button>
     </form>
 
-    <!-- Table -->
+
     <div class="overflow-x-auto">
       <table class="w-full border-separate border-spacing-y-4">
         <thead>
@@ -52,14 +51,14 @@
                     </a>
                   </div>
                   <div class="flex items-center gap-3">
-                    <a href="<%= shortUrl.short %>" target="_blank" 
+                    <a href="https://shortly.vishaldev.me/<%= shortUrl.short %>" target="_blank" 
                        class="underline font-medium hover:text-gray-500">
-                      <%= shortUrl.short %>
+                      https://shortly.vishaldev.me/<%= shortUrl.short %>
                     </a>
-                    <!-- Copy Button -->
+
                     <button 
                       type="button" 
-                      onclick="navigator.clipboard.writeText('https://vishaldev.me/<%= shortUrl.short %>')" 
+                      onclick="navigator.clipboard.writeText('https://shortly.vishaldev.me/<%= shortUrl.short %>')" 
                       class="ml-3 px-3 py-1 border border-black rounded-md shadow-[3px_3px_0_0_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_rgba(0,0,0,1)]">
                       Copy
                     </button>
